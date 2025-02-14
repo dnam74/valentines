@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Anna</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background-color: #ffebf0;
+            font-family: 'Patrick Hand', cursive;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .open-btn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        .ignore-btn {
+            background-color: #ccc;
+            position: relative;
+        }
+        .hidden-letter {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .animation {
+            margin-top: 20px;
+        }
+        .coffee-lemonade {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 50px;
+        }
+        .coffee, .lemonade {
+            display: inline-block;
+            animation: holdHands 2s infinite alternate;
+        }
+        @keyframes holdHands {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="letter-container">
+        <h2>A letter has been delivered to Anna</h2>
+        <div class="buttons">
+            <button class="open-btn" onclick="openLetter()">Open</button>
+            <button class="ignore-btn" onmouseover="moveButton(this)">Ignore</button>
+        </div>
+    </div>
+
+    <div class="container hidden-letter" id="letter">
+        <h2></h2>
+        <p>Dear Anna,</p>
+        <p>I know we're still getting to know each other, but I still wanted you to feel a little special today! Happy Valentines Day and looking forward to getting to know you  more</p>
+        <p>From your darkest secret,<br>The Weeknd(Daniel)</p>
+
+        <div class="animation">
+            <div class="coffee-lemonade">
+                <span class="coffee">☕</span>
+                <span>🤝</span>
+                <span class="lemonade">🍋</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function moveButton(button) {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            button.style.position = "absolute";
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+
+        function openLetter() {
+            document.getElementById("letter-container").style.display = "none";
+            const letter = document.getElementById("letter");
+            letter.style.display = "block";
+            setTimeout(() => { letter.style.opacity = "1"; }, 100);
+        }
+    </script>
+</body>
+</html>
